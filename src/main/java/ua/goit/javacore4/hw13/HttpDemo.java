@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HttpDemo {
-    private static final String CREATE_USER_URL = "https://pingponggoit.herokuapp.com/createUser";
+    private static  final String CREATE_USER_URL = "https://pingponggoit.herokuapp.com/createUser";
     private static final String GET_USER_BY_ID_URL = "https://pingponggoit.herokuapp.com/getUserById";
     private static final String GET_USERS_URL = "https://pingponggoit.herokuapp.com/getUsers";
     private static final String REMOVE_USER_URL = "https://pingponggoit.herokuapp.com/removeUser";

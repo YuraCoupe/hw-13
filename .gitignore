@@ -42,6 +42,6 @@ out/
 ##############################
 ## Others
 ##############################
-HttpDemo.class
-HttpUtil.class
-User.class
+HttpDemo.java
+HttpUtil.java
+User.java

@@ -44,7 +44,7 @@ public class HttpUtil {
         HttpResponse<String> response = CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
         List<User> users = GSON.fromJson(response.body(), new TypeToken<List<User>>() {
         }.getType());
-        return users;
+        return users ;
     }
 
     public static void sendDelete(URI uri, User user) throws IOException, InterruptedException {
