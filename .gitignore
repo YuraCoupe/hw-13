@@ -45,3 +45,4 @@ out/
 HttpDemo.java
 HttpUtil.java
 User.java
+*.json
