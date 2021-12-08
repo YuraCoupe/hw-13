@@ -51,6 +51,9 @@ public class jsonplaceholderDemo {
         //write comments to file
         String fileJSON = GSON.toJson(userLastPostComments);
         jsonplaceholderUtil.fileWriter(userId, lastPostId, fileJSON);
+        //get user open tasks
+        List<Task> userOpenTasks = jsonplaceholderUtil.getOpenTasks(URI.create(USERS_URL), userId);
+        System.out.println("User open tasks:\n" + GSON.toJson(userOpenTasks));
     }
 
     public static JPHUser createDefaultUser() {

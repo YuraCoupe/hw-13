@@ -137,4 +137,18 @@ public class jsonplaceholderUtil {
             System.err.println(e.getMessage());
         }
     }
+
+    public static List<Task> getOpenTasks(URI uri, int userId) throws IOException, InterruptedException {
+        URI newUri = URI.create(String.format("%s/%d/todos?completed=false", uri.toString(), userId));
+        System.out.println(newUri);
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(newUri)
+                .GET()
+                .header("Content-type", "application/json")
+                .build();
+        HttpResponse<String> response = CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
+        List<Task> tasks = GSON.fromJson(response.body(), new TypeToken<List<Task>>() {
+        }.getType());
+        return tasks;
+    }
 }
