@@ -16,43 +16,43 @@ public class jsonplaceholderDemo {
         //create new user to add
         JPHUser defaultUser = createDefaultUser();
         //add new user
-        JPHUser createdUser = jsonplaceholderUtil.createUser(URI.create(USERS_URL), defaultUser);
+        JPHUser createdUser = JsonplaceholderUtil.createUser(URI.create(USERS_URL), defaultUser);
         System.out.println("Created user:\n" + createdUser);
         //get user to update some info
-        JPHUser usertoUpdate = jsonplaceholderUtil.getUserById(URI.create(USERS_URL), 7);
+        JPHUser usertoUpdate = JsonplaceholderUtil.getUserById(URI.create(USERS_URL), 7);
         //update name
         usertoUpdate.setName("Yurik");
         //update user
-        JPHUser updatedUser = jsonplaceholderUtil.updateUser(URI.create(USERS_URL), usertoUpdate);
+        JPHUser updatedUser = JsonplaceholderUtil.updateUser(URI.create(USERS_URL), usertoUpdate);
         System.out.println("Updated user name:\n" + updatedUser.getName());
         System.out.println("Updated user:\n" + updatedUser);
         //delete user
-        jsonplaceholderUtil.deleteUser(URI.create(USERS_URL), createdUser.getId());
+        int deleteUserStatusCode = JsonplaceholderUtil.deleteUser(URI.create(USERS_URL), createdUser.getId());
+        System.out.println("Delete user status code " + deleteUserStatusCode);
         //get all users
-        List<JPHUser> allUsers = jsonplaceholderUtil.getUsers(URI.create(USERS_URL));
+        List<JPHUser> allUsers = JsonplaceholderUtil.getUsers(URI.create(USERS_URL));
         System.out.println("All users:\n" + allUsers);
         //get user by ID
-        JPHUser userById = jsonplaceholderUtil.getUserById(URI.create(USERS_URL), 7);
+        JPHUser userById = JsonplaceholderUtil.getUserById(URI.create(USERS_URL), 7);
         System.out.println("User got by ID:\n" + userById);
         //get user by username
-        JPHUser userByUsername = jsonplaceholderUtil.getUserbyUsername(URI.create(USERS_URL), "Bret");
+        JPHUser userByUsername = JsonplaceholderUtil.getUserbyUsername(URI.create(USERS_URL), "Bret");
         System.out.println("User got by username:\n" + userByUsername);
 
         //get user posts
         int userId = 5;
-        List<Post> userPosts = jsonplaceholderUtil.getUserPosts(URI.create(USERS_URL), userId);
+        List<Post> userPosts = JsonplaceholderUtil.getUserPosts(URI.create(USERS_URL), userId);
         System.out.println("User posts: \n" + userPosts);
         //get user last post id
-        int lastPostId = jsonplaceholderUtil.getUserLastPostId(userPosts);
+        int lastPostId = JsonplaceholderUtil.getUserLastPostId(userPosts);
         System.out.println("User last post id: " + lastPostId);
         //get comments to last user post
-        List<Comment> userLastPostComments = jsonplaceholderUtil.getUserLastPostComments(URI.create(POSTS_URL), lastPostId);
-        System.out.println(userLastPostComments);
+        List<Comment> userLastPostComments = JsonplaceholderUtil.getUserLastPostComments(URI.create(POSTS_URL), lastPostId);
         //write comments to file
         String fileJSON = GSON.toJson(userLastPostComments);
-        jsonplaceholderUtil.fileWriter(userId, lastPostId, fileJSON);
+        JsonplaceholderUtil.fileWriter(userId, lastPostId, fileJSON);
         //get user open tasks
-        List<Task> userOpenTasks = jsonplaceholderUtil.getOpenTasks(URI.create(USERS_URL), userId);
+        List<Task> userOpenTasks = JsonplaceholderUtil.getOpenTasks(URI.create(USERS_URL), userId);
         System.out.println("User open tasks:\n" + GSON.toJson(userOpenTasks));
     }
 

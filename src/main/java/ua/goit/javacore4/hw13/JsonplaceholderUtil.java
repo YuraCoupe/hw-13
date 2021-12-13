@@ -14,7 +14,7 @@ import java.net.http.HttpResponse;
 import java.util.Comparator;
 import java.util.List;
 
-public class jsonplaceholderUtil {
+public class JsonplaceholderUtil {
     private static final HttpClient CLIENT = HttpClient.newHttpClient();
     private static final Gson GSON = new Gson();
 
@@ -41,7 +41,7 @@ public class jsonplaceholderUtil {
         return GSON.fromJson(response.body(), JPHUser.class);
     }
 
-    public static void deleteUser(URI uri, int userId) throws IOException, InterruptedException {
+    public static int deleteUser(URI uri, int userId) throws IOException, InterruptedException {
         URI newUri = URI.create(String.format("%s/%d", uri.toString(), userId));
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(newUri)
@@ -49,6 +49,7 @@ public class jsonplaceholderUtil {
                 .header("Content-type", "application/json")
                 .build();
         HttpResponse<String> response = CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode();
     }
 
     public static List<JPHUser> getUsers(URI uri) throws IOException, InterruptedException {
